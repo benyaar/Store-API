@@ -3,6 +3,8 @@ import * as dotenv from 'dotenv';
 import {sequelize} from "./db";
 dotenv.config()
 
+const models = require('./models/models')
+
 const app = express()
 
 const PORT = process.env.PORT || 3000
