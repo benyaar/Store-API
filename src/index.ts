@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express'
-import * as dotenv from 'dotenv'
+import * as dotenv from 'dotenv';
 import {sequelize} from "./db";
 dotenv.config()
 
