@@ -1,17 +1,19 @@
 import express, {Request, Response} from 'express'
 import * as dotenv from 'dotenv';
 import {sequelize} from "./db";
+import cors from 'cors';
+import {router} from "./routes";
 dotenv.config()
 
 const models = require('./models/models')
 
 const app = express()
 
-const PORT = process.env.PORT || 3000
+app.use(express.json())
+app.use(cors())
+app.use('/api', router)
 
-app.get('/blog', (req:Request, res:Response) => {
-    res.send('hello')
-})
+const PORT = process.env.PORT || 3000
 
 const start = async () => {
     try {
