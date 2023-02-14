@@ -1,13 +1,13 @@
 import {NextFunction, Request, Response} from "express";
 import {Device, DeviceInfo, DeviceInfoType} from "../models/models";
-import {ApiError} from "../error/apiError";
+
 
 class DeviceController {
     async create(req: Request, res:Response, next:NextFunction){
         try{
             let {name, price, brandId, typeId, info} = req.body
             const filedata = req.file;
-            if(!filedata) return next(ApiError.badRequest("Not images"))
+            if(!filedata) return res.sendStatus(404)
 
             const device:any = await Device.create({name, price, brandId, typeId, img: filedata.filename})
 
@@ -21,9 +21,9 @@ class DeviceController {
                     })
                 })
             }
-            return res.status(201).send(device)
+            return res.status(201).send(device.dataValues)
         }catch (e: any) {
-            next(ApiError.badRequest(e.message))
+            return res.status(404).send({message: e.errors[0].message})
         }
     }
 
