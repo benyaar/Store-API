@@ -5,8 +5,8 @@ import cors from 'cors';
 import {router} from "./routes";
 import multer from "multer";
 import {fileFilter, fileStorage} from "./middleware/multerMiddleWare";
-import {errorHandlingMiddleware} from "./middleware/errorHandlingMiddleware";
 import path from "path";
+import {errorHandlingMiddleware} from "./middleware/errorHandlingMiddleware";
 dotenv.config()
 
 const models = require('./models/models')

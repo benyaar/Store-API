@@ -1,5 +1,3 @@
-import {isNumberObject} from "util/types";
-
 export class ApiError extends Error{
     status: number
     message: string
