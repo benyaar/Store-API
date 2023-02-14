@@ -16,6 +16,14 @@ export type DeviceType = {
     brandId: number,
     typeId: number
 }
+
+export type UserType = {
+    id: number
+    email: string
+    password: string
+    role: string
+}
+
 export const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true},
