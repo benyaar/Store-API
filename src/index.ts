@@ -6,7 +6,7 @@ import {router} from "./routes";
 import multer from "multer";
 import {fileFilter, fileStorage} from "./middleware/multerMiddleWare";
 import path from "path";
-import {errorHandlingMiddleware} from "./middleware/errorHandlingMiddleware";
+import errorHandlerMiddleware from "./middleware/errorHandlingMiddleware";
 dotenv.config()
 
 const models = require('./models/models')
@@ -18,7 +18,8 @@ app.use(cors())
 app.use('/api', router)
 app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single("filedata"));
 app.use(express.static(path.resolve(__dirname, '../static')))
-app.use(errorHandlingMiddleware)
+
+app.use(errorHandlerMiddleware);
 
 const PORT = process.env.PORT || 3000
 

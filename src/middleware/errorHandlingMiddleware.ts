@@ -1,10 +1,10 @@
-import {Request, Response} from "express";
-import {ApiError} from "../error/apiError";
+import { Request, Response, NextFunction } from "express";
 
-
-export const errorHandlingMiddleware = (err: any, req: Request, res: Response) => {
-    if(err instanceof ApiError){
-        res.status(err.status).send({message: err.message})
-    }
-    return res.status(500).send({message: 'Server exception'})
+export default function errorHandlerMiddleware(
+    error: any,
+    request: Request,
+    response: Response,
+    next: NextFunction
+) {
+    return response.status(error.status).json({error: error.message});
 }
